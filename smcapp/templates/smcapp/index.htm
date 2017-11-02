@@ -20,14 +20,27 @@
 		<br><br>
 		<h2>Sign in to access your account:</h2>
 		<!-- "login_page.py" is a temporary holder name, can be changed -->
-		<form action="/login_page.py" method="post">
-		
-		<input type="text" id="email" name="username" placeholder="Username or Email"><br>
+		<form action="/smcapp/" method="post">
+			{% csrf_token %}
+			{% for field in form %}
 
-		<input type="text" id="pass" name="password" placeholder="Password"><br>
-		<input type="submit" value="Login">
+				{{ field.errors }}
+				{{ field.label_tag }}
+
+				<br />
+				<input type="text" maxlength="30" style="width:300;" id="{{ field.auto_id }}" name="{{ field.html_name }}"/>
+				<br />
+
+			{% endfor %}
+
+			<!-- <input type="text" id="email" name="username" placeholder="Username or Email"><br>
+
+			<input type="text" id="pass" name="password" placeholder="Password"><br> -->
+
+			<br />
+			<input type="submit" value="Login">
 		
-		</form>	
+		</form>
 	</div>
 
 </body>

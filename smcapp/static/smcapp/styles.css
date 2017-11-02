@@ -4,6 +4,8 @@ header {
 }
 body {
     background-color: LightSlateGray;
+	color: White;
+	font-family: Helvetica;
 }
 h1 {
     text-align: center;
