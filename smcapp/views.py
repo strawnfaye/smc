@@ -6,7 +6,10 @@ from django.contrib.auth.forms import UserCreationForm
 from smcapp.forms import SignUpForm
 from .forms import LoginForm
 
-def index(request):
+def  index(request):
+	return render(request, 'smcapp/index.htm')
+
+def login(request):
 	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
 
@@ -26,7 +29,7 @@ def index(request):
 	else:
 		form = LoginForm()
 
-	return render(request, 'smcapp/index.htm', {'form': form})
+	return render(request, 'smcapp/login.htm', {'form': form})
 
 def register(request):
 	if request.method == 'POST':
@@ -43,4 +46,4 @@ def register(request):
 	else:
 		form = SignUpForm()
 		args = {'form': form}
-		return render(request, 'smcapp/reg_form.htm', args) 
+		return render(request, 'smcapp/reg_form.htm', args)

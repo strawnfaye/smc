@@ -4,8 +4,8 @@ header {
 }
 body {
     background-color: LightSlateGray;
-	color: White;
-	font-family: Helvetica;
+	  color: White;
+    font-family: Helvetica;
 }
 h1 {
     text-align: center;
@@ -42,4 +42,23 @@ div {
     border-radius: 5px;
     background-color: LightSlateGray;
     padding: 20px;
+}
+main {
+    width: 100%;
+    margin: 40px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.button {
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: DarkOrange;
+    text-decoration: none;
+    color: white;
+    margin: 5px;
+    width: 25%;
 }
