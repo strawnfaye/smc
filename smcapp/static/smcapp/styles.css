@@ -19,7 +19,7 @@ h2 {
     font-size: 20px;
 }
 input[type=text], select {
-    width: 50%;
+    width: 75%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -37,20 +37,15 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
-div {
-    margin-left: 200px;
-    border-radius: 5px;
-    background-color: LightSlateGray;
-    padding: 20px;
+label {
+    display: block;
+    padding: 10px 0;
 }
 main {
     width: 100%;
     margin: 40px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100%;
+    background-color: LightSlateGray;
 }
 .button {
     text-align: center;
@@ -61,4 +56,16 @@ main {
     color: white;
     margin: 5px;
     width: 25%;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
