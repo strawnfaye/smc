@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
@@ -7,42 +7,50 @@ from smcapp.forms import SignUpForm
 from .forms import LoginForm
 import MySQLdb as mdb
 
-def  index(request):
+def index(request):
 	return render(request, 'smcapp/index.htm')
 
 def login(request):
+
 	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
 
+		# create a form instance and populate it with data from the request:
+		form = LoginForm(request.POST)
+
 		try:
-			con = mdb.connect('localhost', 'root', '123', 'healthmanagement')
-				
-			con.query("SELECT * from patient")
+			con = mdb.connect('localhost', 'root', 'password', 'healthmanagement')
+			
+			query = "SELECT userName, userPassWord from patient where userName = \'" + form['email'].value() + "\';"
+			con.query(query)
 			result = con.use_result()
 		
-			print(result.fetch_row()[0])
+			row = result.fetch_row()[0]
+
+			password = row[1]
+
+			if password != form['password'].value():
+				form.add_error('password', 'Wrong password.')
 		
-		except:
+		except mdb.Error as e:
 		  
 			print(e.args[0], e.args[1])
-			sys.exit(1)
+
+		except:
+			
+			print("Username does not exist.")
 
 		finally:
 		
 			if con:
 				con.close()
 
-		# create a form instance and populate it with data from the request:
-		form = LoginForm(request.POST)
-
-		print(form['email'].value())
-
 		# check whether it's valid:
-		if form.is_valid() and form['email'].value() == "joshua@cs.ucf.edu":
+		if form.is_valid():
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return HttpResponseRedirect('/admin/')
+			return render(request, 'smcapp/login.htm', {'form': form})
 
 	# if a GET (or any other method) we'll create a blank form
 	else:
@@ -55,11 +63,13 @@ def register(request):
 		form = SignUpForm(request.POST)
 		# once the information is check for being "unique" save the information
 		if form.is_valid():
+
 			form.save()
 			username = form.cleaned_data.get('username')
 			raw_password = form.cleaned_data.get('password1')
 			user = authenticate(username=username, password=raw_password)
 			login(request, user)
+
 			return HttpResponseRedirect('/admin/')
 	# else create a user form to register
 	else:

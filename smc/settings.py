@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'smc.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',#'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',#'mysql.connector.django',
         'NAME': 'healthmanagement',#os.path.join(BASE_DIR, 'Healthmanagement.mysql'),
         'USER': 'root',
-        'PASSWORD': '123',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': ''
     }
