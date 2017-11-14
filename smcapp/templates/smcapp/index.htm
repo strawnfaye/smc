@@ -15,33 +15,12 @@
 		Smart Health Counseling
 		</h1>
 	</header>
-
-	<div>
-		<br><br>
-		<h2>Sign in to access your account:</h2>
-		<!-- "login_page.py" is a temporary holder name, can be changed -->
-		<form action="/smcapp/" method="post">
-			{% csrf_token %}
-			{% for field in form %}
-
-				{{ field.errors }}
-				{{ field.label_tag }}
-
-				<br />
-				<input type="text" maxlength="30" style="width:300;" id="{{ field.auto_id }}" name="{{ field.html_name }}"/>
-				<br />
-
-			{% endfor %}
-
-			<!-- <input type="text" id="email" name="username" placeholder="Username or Email"><br>
-
-			<input type="text" id="pass" name="password" placeholder="Password"><br> -->
-
-			<br />
-			<input type="submit" value="Login">
-		
-		</form>
-	</div>
+	<main>
+		<div class="button-container">
+			<a href="{% url 'login' %}" class="button">Login</a>
+			<a href="{% url 'register' %}" class="button">Register</a>
+		</div>
+	</main>
 
 </body>
 </html>

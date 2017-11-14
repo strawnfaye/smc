@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<title>SmartHealthConsulting</title>
+	<meta charset="UTF-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'smcapp/styles.css' %}" type='text/css' />
+</head>
+
+<body>
+
+	<header>
+		<h1>
+		Smart Health Consulting
+		</h1>
+	</header>
+
+	<main class="container">
+		<div>
+			<br><br>
+			<h2>Register:</h2>
+
+			<form method="post">
+				<!-- csrf_token is security. Makes it a more secure means of sending data through the HTTP protocols -->
+				{% csrf_token %}
+
+				<!-- <table border="0">
+	            	{{ form }}
+	            </table> -->
+
+					{{ form.as_p }}
+
+				<!-- looking for a way to make it look better without getting rid of the default django stuff -->
+
+				<input type="submit" value="Register">
+
+			</form>
+		</div>
+	</main>
+</body>
+</html>

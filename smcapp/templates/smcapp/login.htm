@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<title>SmartHealthConsulting</title>
+	<meta charset="UTF-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'smcapp/styles.css' %}" type='text/css' />
+</head>
+
+<body>
+
+	<header>
+		<h1>
+		Smart Health Consulting
+		</h1>
+	</header>
+
+	<main class="container">
+			<div>
+				<h2>Sign in to access your account:</h2>
+				<!-- "login_page.py" is a temporary holder name, can be changed -->
+				<form action="/smcapp/" method="post">
+					{% csrf_token %}
+					{% for field in form %}
+
+						{{ field.errors }}
+						{{ field.label_tag }}
+
+						<input type="text" maxlength="30" style="width:300;" id="{{ field.auto_id }}" name="{{ field.html_name }}"/>
+
+					{% endfor %}
+
+					<!-- <input type="text" id="email" name="username" placeholder="Username or Email"><br>
+
+					<input type="text" id="pass" name="password" placeholder="Password"><br> -->
+
+					<input type="submit" value="Login">
+
+				</form>
+			</div>
+	</main>
+
+</body>
+</html>
