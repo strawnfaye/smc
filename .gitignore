@@ -1,0 +1,5 @@
+smcapp/__pycache__
+smc/__pycache__
+smcapp/migrations/__pycache__
+
+*.pyc
