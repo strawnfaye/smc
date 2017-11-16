@@ -21,15 +21,11 @@
 			<br><br>
 			<h2>Register:</h2>
 
-			<form method="post">
+			<form action="/smcapp/register/" method="post">
 				<!-- csrf_token is security. Makes it a more secure means of sending data through the HTTP protocols -->
 				{% csrf_token %}
 
-				<!-- <table border="0">
-	            	{{ form }}
-	            </table> -->
-
-					{{ form.as_p }}
+				{{ form.as_p }}
 
 				<!-- looking for a way to make it look better without getting rid of the default django stuff -->
 

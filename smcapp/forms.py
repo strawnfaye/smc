@@ -6,7 +6,7 @@ class LoginForm(forms.Form):
 	MAX_LENGTH = 20
 
 	email = forms.EmailField(label='Username', max_length=MAX_LENGTH, widget=forms.TextInput(attrs={'style':'width:300;'}))
-	password = forms.CharField(label='Password', max_length=MAX_LENGTH, widget=forms.PasswordInput(), help_text='Wrong password.')
+	password = forms.CharField(label='Password', max_length=MAX_LENGTH, widget=forms.PasswordInput())
 
 	class Meta:
 		model = User
@@ -18,15 +18,18 @@ class LoginForm(forms.Form):
 class SignUpForm(UserCreationForm):
 	MAX_LENGTH = 20
 
-	username = forms.EmailField(max_length=150, required=True, help_text='Required. Enter a valid email address.')
-	first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-	last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+	email = forms.EmailField(label='Email', max_length=150, required=True, help_text='Required. Enter a valid email address.')
+	name = forms.CharField(label='Name', max_length=30, required=False)
 	password1 = forms.CharField(label='Password', max_length=MAX_LENGTH, widget=forms.PasswordInput())
 	password2 = forms.CharField(label='Verify Password', max_length=MAX_LENGTH, widget=forms.PasswordInput())
+	city = forms.CharField(label='City', max_length=10)
+	state = forms.CharField(label='State', max_length=10)
+	birthDate = forms.CharField(label='Birth Date', max_length=10)
+	phoneNumber = forms.CharField(label='Phone Number', max_length=10)
 
 	class Meta:
 		model = User
-		fields = ('username', 'first_name', 'last_name', 'password1', 'password2')
+		fields = ('email', 'name', 'password1', 'password2', 'city', 'state', 'birthDate')
 		widgets = {
 			'password' : forms.PasswordInput(),
 		}
